@@ -51,8 +51,7 @@ export function HeroSection() {
                     transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
                     className="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto"
                 >
-                    Book a live screenshare session with an expert developer.
-                    Solve that specific bug, deployment error, or config issue right now.
+                    Upload context. Get matched with someone who's hit that wall before. Quick screenshare. Ship.
                 </motion.p>
 
                 <motion.div
