@@ -130,6 +130,14 @@ Use Stripe test card: `4242 4242 4242 4242` with any future expiry and CVC.
 3. Set callback URL: `http://localhost:3000/api/auth/callback/github`
 4. Copy client ID and secret to `.env`
 
+## Assets
+
+### Hero Video
+The landing page requires a video background. Please add the following files to the `public/` directory:
+- `hero.mp4` - Main video file (recommended: < 5MB, 720p or 1080p, muted)
+- `hero.webm` - WebM format for better compression (optional but recommended)
+- `hero-poster.jpg` - Fallback image for mobile/slow connections
+
 ## Project Structure
 
 ```

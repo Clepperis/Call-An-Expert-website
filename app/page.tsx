@@ -3,207 +3,286 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useState } from "react";
+import { HeroSection } from "@/components/hero-section";
+import { motion } from "framer-motion";
 
-export default function HomePage() {
-    const [openFaq, setOpenFaq] = useState<number | null>(null);
-
+export default function LandingPage() {
     return (
-        <div className="bg-white">
+        <div className="flex flex-col min-h-screen">
             {/* Hero Section */}
-            <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-                <h1 className="text-5xl font-bold mb-4">
-                    Stuck at 80%? Get unstuck in 15 minutes.
-                </h1>
-                <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                    Upload context. Get matched with someone who's hit that wall before. Quick screenshare. Ship.
-                </p>
-                <div className="flex gap-4 justify-center">
-                    <Link href="/book">
-                        <Button size="lg">Book a session</Button>
-                    </Link>
-                    <Link href="/experts">
-                        <Button size="lg" variant="outline">
-                            Become an expert
-                        </Button>
-                    </Link>
-                </div>
-                <div className="mt-8 text-sm text-gray-500">
-                    Secure payments • Private by default • Cancel anytime
-                </div>
-            </section>
+            <HeroSection />
 
             {/* How it works */}
-            <section id="how-it-works" className="bg-gray-50 py-16">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-12">How it works</h2>
+            <section id="how-it-works" className="py-24 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl font-bold mb-4">How it works</h2>
+                        <p className="text-xl text-gray-600">
+                            Get unblocked in 3 simple steps
+                        </p>
+                    </motion.div>
+
                     <div className="grid md:grid-cols-3 gap-8">
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-primary mb-4">1</div>
-                            <h3 className="text-xl font-semibold mb-2">Describe the block + upload context</h3>
-                            <p className="text-gray-600">
-                                Tell us what's blocking you. Share your repo, error logs, or zip up your project.
-                            </p>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-primary mb-4">2</div>
-                            <h3 className="text-xl font-semibold mb-2">Pay and pick a time window</h3>
-                            <p className="text-gray-600">
-                                Quick checkout. Tell us when you're available for a 15-minute screenshare.
-                            </p>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-4xl font-bold text-primary mb-4">3</div>
-                            <h3 className="text-xl font-semibold mb-2">Hop on a 15-min screenshare and unblock</h3>
-                            <p className="text-gray-600">
-                                Get matched with an expert who's solved this before. Get unstuck fast.
-                            </p>
-                        </div>
+                        {[
+                            {
+                                title: "1. Describe your problem",
+                                description:
+                                    "Share your context, tech stack, and what you're stuck on. You can upload logs or link a repo.",
+                            },
+                            {
+                                title: "2. Book a session",
+                                description:
+                                    "Pick a 15-minute slot. $49 flat fee. We'll match you with an expert who knows your stack.",
+                            },
+                            {
+                                title: "3. Get unstuck",
+                                description:
+                                    "Jump on a screenshare. We'll debug together, fix the issue, or point you in the exact right direction.",
+                            },
+                        ].map((step, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.6, delay: i * 0.1 }}
+                            >
+                                <Card className="border-none shadow-lg h-full">
+                                    <CardHeader>
+                                        <CardTitle>{step.title}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-gray-600">{step.description}</p>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        ))}
                     </div>
                 </div>
             </section>
 
             {/* Use Cases */}
-            <section className="py-16">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-12">Common blockers we help with</h2>
-                    <div className="grid md:grid-cols-3 gap-6">
+            <section className="py-24 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl font-bold mb-4">
+                            What we can help with
+                        </h2>
+                        <p className="text-xl text-gray-600">
+                            Perfect for specific, tactical blockers
+                        </p>
+                    </motion.div>
+
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {[
-                            "Stripe webhook failing after API update",
-                            "Auth redirect loop",
-                            "Vercel deploy works locally but fails in production",
-                            "React state edge case",
-                            "Zapier integration stopped triggering",
-                            "Database migration breaking in production",
+                            "Stripe webhook signature verification failing",
+                            "Next.js App Router caching issues",
+                            "Docker container networking errors",
+                            "Tailwind CSS grid layout bugs",
+                            "Prisma schema relation confusion",
+                            "NextAuth Google provider 400 error",
+                            "React useEffect infinite loops",
+                            "TypeScript 'any' type refactoring",
+                            "Vercel deployment build failures",
                         ].map((useCase, i) => (
-                            <Card key={i}>
-                                <CardContent className="pt-6">
-                                    <p className="text-gray-700">{useCase}</p>
-                                </CardContent>
-                            </Card>
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.05 }}
+                                className="p-4 rounded-lg bg-gray-50 border border-gray-100 font-medium text-gray-700 hover:border-blue-200 transition-colors"
+                            >
+                                {useCase}
+                            </motion.div>
                         ))}
                     </div>
                 </div>
             </section>
 
             {/* Pricing */}
-            <section id="pricing" className="bg-gray-50 py-16">
-                <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-12">Pricing</h2>
+            <section id="pricing" className="py-24 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl font-bold mb-4">Simple pricing</h2>
+                        <p className="text-xl text-gray-600">
+                            Pay only when you're stuck
+                        </p>
+                    </motion.div>
 
-                    {/* Session pricing */}
-                    <div className="mb-12">
-                        <h3 className="text-2xl font-semibold text-center mb-8">One-time sessions</h3>
-                        <Card className="max-w-md mx-auto text-center">
-                            <CardHeader>
-                                <CardTitle>15-minute expert session</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="text-4xl font-bold mb-4">$49</div>
-                                <ul className="text-left space-y-2 text-gray-700">
-                                    <li>• 15-minute screenshare</li>
-                                    <li>• Matched expert in your stack</li>
-                                    <li>• Direct help with your blocker</li>
-                                </ul>
-                                <Link href="/book">
-                                    <Button className="w-full mt-6">Book now</Button>
-                                </Link>
-                            </CardContent>
-                        </Card>
-                    </div>
+                    <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                        {/* Session Card */}
+                        <motion.div
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <Card className="h-full border-2 border-blue-100 shadow-xl relative overflow-hidden">
+                                <div className="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                                    POPULAR
+                                </div>
+                                <CardHeader>
+                                    <CardTitle className="text-2xl">Single Session</CardTitle>
+                                    <div className="mt-4">
+                                        <span className="text-4xl font-bold">$49</span>
+                                        <span className="text-gray-600"> / 15 mins</span>
+                                    </div>
+                                </CardHeader>
+                                <CardContent>
+                                    <ul className="space-y-3 mb-8">
+                                        {[
+                                            "1-on-1 screenshare",
+                                            "Expert matching",
+                                            "Code review & debugging",
+                                            "Follow-up notes",
+                                        ].map((feature) => (
+                                            <li key={feature} className="flex items-center gap-2">
+                                                <svg
+                                                    className="w-5 h-5 text-green-500"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
+                                                {feature}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                    <Link href="/book" className="block">
+                                        <Button className="w-full h-12 text-lg">
+                                            Book Now
+                                        </Button>
+                                    </Link>
+                                </CardContent>
+                            </Card>
+                        </motion.div>
 
-                    {/* Agency pricing */}
-                    <div>
-                        <h3 className="text-2xl font-semibold text-center mb-8">Agency annual plans</h3>
-                        <div className="grid md:grid-cols-3 gap-6">
-                            <Card>
+                        {/* Agency Card */}
+                        <motion.div
+                            initial={{ opacity: 0, x: 20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.6 }}
+                        >
+                            <Card className="h-full border border-gray-200">
                                 <CardHeader>
-                                    <CardTitle>Starter</CardTitle>
+                                    <CardTitle className="text-2xl">Agency Plan</CardTitle>
+                                    <div className="mt-4">
+                                        <span className="text-4xl font-bold">$99+</span>
+                                        <span className="text-gray-600"> / year</span>
+                                    </div>
                                 </CardHeader>
                                 <CardContent>
-                                    <div className="text-3xl font-bold mb-4">$99<span className="text-base font-normal text-gray-600">/year</span></div>
-                                    <ul className="space-y-2 text-gray-700">
-                                        <li>• 1 seat</li>
-                                        <li>• Standard matching</li>
-                                        <li>• Pay per session</li>
+                                    <ul className="space-y-3 mb-8">
+                                        {[
+                                            "Priority matching",
+                                            "Multiple team seats",
+                                            "Monthly consolidated billing",
+                                            "Slack integration (soon)",
+                                        ].map((feature) => (
+                                            <li key={feature} className="flex items-center gap-2">
+                                                <svg
+                                                    className="w-5 h-5 text-gray-400"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth={2}
+                                                        d="M5 13l4 4L19 7"
+                                                    />
+                                                </svg>
+                                                {feature}
+                                            </li>
+                                        ))}
                                     </ul>
-                                    <Link href="/agency">
-                                        <Button variant="outline" className="w-full mt-6">Choose plan</Button>
+                                    <Link href="/agency" className="block">
+                                        <Button variant="outline" className="w-full h-12 text-lg">
+                                            View Agency Plans
+                                        </Button>
                                     </Link>
                                 </CardContent>
                             </Card>
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Studio</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="text-3xl font-bold mb-4">$249<span className="text-base font-normal text-gray-600">/year</span></div>
-                                    <ul className="space-y-2 text-gray-700">
-                                        <li>• Up to 5 seats</li>
-                                        <li>• Priority matching</li>
-                                        <li>• Team dashboard</li>
-                                    </ul>
-                                    <Link href="/agency">
-                                        <Button variant="outline" className="w-full mt-6">Choose plan</Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
-                            <Card>
-                                <CardHeader>
-                                    <CardTitle>Agency</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="text-3xl font-bold mb-4">$499<span className="text-base font-normal text-gray-600">/year</span></div>
-                                    <ul className="space-y-2 text-gray-700">
-                                        <li>• Up to 20 seats</li>
-                                        <li>• Priority matching</li>
-                                        <li>• Consolidated billing</li>
-                                    </ul>
-                                    <Link href="/agency">
-                                        <Button variant="outline" className="w-full mt-6">Choose plan</Button>
-                                    </Link>
-                                </CardContent>
-                            </Card>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
             {/* FAQ */}
-            <section id="faq" className="py-16">
+            <section id="faq" className="py-24 bg-white">
                 <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 className="text-3xl font-bold text-center mb-12">FAQ</h2>
-                    <div className="space-y-4">
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="text-center mb-16"
+                    >
+                        <h2 className="text-3xl font-bold mb-4">FAQ</h2>
+                    </motion.div>
+
+                    <div className="space-y-6">
                         {[
                             {
-                                q: "How quickly will I get matched?",
-                                a: "We aim to match you with an expert within 2 hours during business hours.",
+                                q: "What if the expert can't solve it?",
+                                a: "If we can't unblock you or point you in the right direction within 15 minutes, we'll refund your session. No questions asked.",
                             },
                             {
-                                q: "What if the session doesn't solve my problem?",
-                                a: "We focus on getting you unstuck, not guaranteeing a complete solution. Most blockers can be identified and addressed in 15 minutes.",
+                                q: "Who are the experts?",
+                                a: "They are Senior Engineers, CTOs, and specialized consultants who have deep experience in the specific tech stack you select.",
                             },
                             {
-                                q: "Can I upload sensitive code?",
-                                a: "We recommend you don't upload API keys or passwords. Share context carefully.",
+                                q: "Can I book a longer session?",
+                                a: "Currently we focus on quick 15-minute unblocking sessions. If you need more time, you can book back-to-back sessions or discuss with the expert directly.",
                             },
                             {
-                                q: "What tech stacks do you support?",
-                                a: "We have experts across Next.js, React, Node.js, Python, Stripe, auth systems, databases, and more.",
+                                q: "Do you sign NDAs?",
+                                a: "Our Terms of Service includes a confidentiality clause. For Enterprise/Agency plans, we can sign custom NDAs.",
                             },
                         ].map((faq, i) => (
-                            <div key={i} className="border-b border-gray-200 pb-4">
-                                <button
-                                    className="w-full text-left font-semibold flex justify-between items-center"
-                                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                                >
-                                    {faq.q}
-                                    <span className="text-gray-500">{openFaq === i ? "−" : "+"}</span>
-                                </button>
-                                {openFaq === i && (
-                                    <p className="mt-2 text-gray-600">{faq.a}</p>
-                                )}
-                            </div>
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.4, delay: i * 0.1 }}
+                            >
+                                <Card>
+                                    <CardHeader>
+                                        <CardTitle className="text-lg">{faq.q}</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <p className="text-gray-600">{faq.a}</p>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
                         ))}
                     </div>
                 </div>
